@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Bodypart:
+  = @exercise.bodypart
+%p
+  %b Name:
+  = @exercise.name
+%p
+  %b Details:
+  = @exercise.details
+%p
+  %b Youtube:
+  = @exercise.youtube
+%p
+  %b Votes:
+  = @exercise.votes
+
+= link_to 'Edit', edit_exercise_path(@exercise)
+\|
+= link_to 'Back', exercises_path

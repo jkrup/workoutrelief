@@ -1,0 +1,47 @@
+%h1 WorkOut Relief
+%h3 Click where on the person you are sore, or just where you'd like to keep fit!
+%h4.text-center
+  %a.btn.btn-info.btn-large#flip{href:""} Turn Around
+
+.front
+  =image_tag("humanfront.jpg", {id:"Image-Maps_3201306151231499", usemap:"#Image-Maps_3201306151231499", border:"0", width:"512", height:"1024", alt:""})
+  <map id="_Image-Maps_3201306151231499" name="Image-Maps_3201306151231499"> <area shape="rect" coords="109,175,175,233" href="#shoulders" alt="shoulders" title="shoulders"    /> <area shape="rect" coords="325,170,391,227" href="#shoulders" alt="shoulders" title="shoulders"    /> <area shape="rect" coords="169,134,339,180" href="#neck" alt="neck" title="neck"    /> <area shape="rect" coords="199,17,304,134" href="#head" alt="head" title="head"    /> <area shape="rect" coords="173,179,325,292" href="#chest" alt="chest" title="chest"    /> <area shape="rect" coords="175,291,327,425" href="#stomach" alt="stomach" title="stomach"    /> <area shape="rect" coords="154,423,332,497" href="#hips" alt="hips" title="hips"    /> <area shape="rect" coords="149,494,346,705" href="#quads" alt="quads" title="quads"    /> <area shape="rect" coords="148,753,337,916" href="#shins" alt="shins" title="shins"    /> <area shape="rect" coords="149,704,339,754" href="#knees" alt="knees" title="knees"    /> <area shape="rect" coords="147,914,338,957" href="#ankles" alt="ankles" title="ankles"    /> <area shape="rect" coords="162,956,353,999" href="#feet" alt="feet" title="feet"    /> <area shape="rect" coords="96,232,160,368" href="#biceps" alt="biceps" title="biceps"    /> <area shape="rect" coords="326,224,396,339" href="#biceps" alt="biceps" title="biceps"    /> <area shape="rect" coords="70,367,146,487" href="#forearmwrists" alt="forearmwrists" title="forearmwrists"    /> <area shape="rect" coords="334,338,418,470" href="#forearmwrists" alt="forearmwrists" title="forearmwrists"    /> <area shape="rect" coords="41,488,111,585" href="#hands" alt="hands" title="hands"    /> <area shape="rect" coords="362,472,448,580" href="#hands" alt="hands" title="hands"    /> <area shape="rect" coords="510,1022,512,1024" href="http://www.image-maps.com/index.php?aff=mapped_users_3201306151231499" alt="Image Map" title="Image Map" /> </map>
+
+.back{style: "display: none"}
+  =image_tag("humanback.jpg", {id:"Image-Maps_4201306151441499", class: "img-polaroid",usemap:"#Image-Maps_4201306151441499", border:"0", width:"512", height:"1024", alt:""})
+  <map id="_Image-Maps_4201306151441499" name="Image-Maps_4201306151441499">
+  <area shape="rect" coords="207,114,308,164" href="#neck" alt="neck" title="neck"    />
+  <area shape="rect" coords="238,156,278,423" href="#spine" alt="spine" title="spine"    />
+  <area shape="rect" coords="160,422,355,549" href="#rear" alt="rear" title="rear"    />
+  <area shape="rect" coords="122,161,186,216" href="#shoulder" alt="shoulder" title="shoulder"    />
+  <area shape="rect" coords="67,225,157,576" href="#arms" alt="arms" title="arms"    />
+  <area shape="rect" coords="349,217,439,568" href="#arms" alt="arms" title="arms"    />
+  <area shape="rect" coords="154,215,239,421" href="#back" alt="back" title="back"    />
+  <area shape="rect" coords="274,216,359,421" href="#back" alt="back" title="back"    />
+  <area shape="rect" coords="306,150,384,217" href="#shoulder" alt="shoulder" title="shoulder"    />
+  <area shape="rect" coords="164,548,350,712" href="#hams" alt="hams" title="hams"    />
+  <area shape="rect" coords="163,713,349,909" href="#calves" alt="calves" title="calves"    />
+  <area shape="rect" coords="153,907,339,1001" href="#ankles" alt="ankles" title="ankles"    />
+  </map>
+  </div>
+
+  -#<div class="modal hide fade">
+    -#<div class="modal-header">
+      -#<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      -#<h3>Request For Another Body Section</h3>
+    -#</div>
+    -#modal-body">
+  -#=label_tag "Body Part"
+  -#=text_field "Body Part"
+    -#</div>
+    -#<div class="modal-footer">
+      -#<a href="#" class="btn">Close</a>
+      -#<a id="subreq" href="#" class="btn btn-primary">Submit Request</a>
+    -#</div>
+  -#</div>
+
+-#%ul
+  -BodyPart.all.each do |bodypart|
+    %li=link_to bodypart.name, bodypart_path(bodypart_id: bodypart.id)
+
+-#= link_to 'Request Another Body Part', "#"

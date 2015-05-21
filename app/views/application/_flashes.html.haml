@@ -1,0 +1,6 @@
+- [:success, :notice, :error, :alert].each do |level|
+  - unless flash[level].blank?
+    .alert{class: flash_class(level)}
+      %button.close{type:"button", data: {dismiss: "alert"}} &times;
+      -#%a.close{href: "#"} ×
+      = content_tag :p, flash[level]

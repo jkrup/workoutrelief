@@ -1,0 +1,26 @@
+%br
+= link_to "Back to Body", root_url
+%h1=@bodypart.name.capitalize
+%p
+  - if @exercises.length > 0 
+    - @exercises.each do |exercise|
+      .well
+        .pull-right="#{exercise.votes_for} #{"vote".pluralize(exercise.votes_for)}!"
+        %h2= exercise.name.camelize
+        -#.pull-right="#{exercise.votes} upvotes!"
+        %p= exercise.details
+        - unless exercise.youtube.empty?
+          - a = exercise.youtube
+          - embedyt = a.slice(a.index("?v=")+3,a.length)
+          %iframe{width:"560", height:"315", src:"http://www.youtube.com/embed/#{embedyt}", frameborder:"0", allowfullscreen: true}
+        -else
+          %em No Video Provided
+        -if current_user
+          -if current_user.id == exercise.user_id
+            =link_to "Edit?", edit_exercise_path(exercise)
+          -else
+            = link_to "Upvote", vote_path(exercise_id: exercise.id)
+    %p=link_to "Add an exercise or stretching routine?", new_exercise_path(bodypart_id: @bodypart.id)
+  - else
+    %p No exercises available for this bodypart ;(
+    %p=link_to "Create one?", new_exercise_path(bodypart_id: @bodypart.id)

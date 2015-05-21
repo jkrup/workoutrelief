@@ -1,0 +1,59 @@
+!!!
+%html{lang: "en"}
+  %head
+    -if @title
+      %title="#{@title} | WorkOut Relief"
+    -else
+      %title WorkOut Relief
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    -if Rails.env.production?
+      :javascript
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-34051136-2', 'workoutrelief.info');
+        ga('send', 'pageview');
+    -#<script src="http://static.opentok.com/v1.1/js/TB.min.js" ></script>
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container
+          %a.brand{href:"/"} WorkOut Relief
+          %ul.nav
+            %li.divider-vertical
+            %li
+              %a{href:"/whatisit"} What is it?
+            %li
+              %a{href:"/about"} About
+          %ul.nav.secondary-nav.pull-right
+            %li.dropdown
+              -if current_user
+                -#%li= "Signed in as #{current_user.email} "
+                = link_to 'Sign Out', signout_path
+              -else
+                %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}} Sign In
+              %ul.dropdown-menu.dropdown-form
+                %li
+                  - if current_user
+                    = "Signed in as #{current_user.email} "
+                    = link_to 'Sign Out', signout_path
+                  - else
+                    = form_tag '/auth/identity/callback', {style: "padding: 15px; padding-bottom: 0;"} do |f|
+                      = text_field_tag :auth_key, nil, :class => 'input-large', :placeholder => "email@address.com"
+                      = password_field_tag :password, nil, :class => 'input-large', :placeholder => "password"
+                      = submit_tag "Login", :class => "btn btn-success"
+                    = link_to "Sign In with facebook", "/auth/facebook"
+                    = link_to "Register", new_identity_path
+    = render 'flashes'
+    .container#main
+      .row
+        .span12
+          = yield
+    %footer.footer
+      .container
+        %p.muted
+          Everything here was created within 24 hours for the <a href="http://info.cookpad.com/24contest4_en">Cookpad 24-hour Hackathon Competition</a>.
+        %p=current_user.inspect if Rails.env.development?
